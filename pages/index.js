@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation, queryCache } from 'react-query'
 import { Table, Button } from 'antd'
-import usePostActions, { DEPRECATE, DELETE } from './actions'
+import usePostActions, { ARCHIVE, DELETE } from './actions'
 import axios from 'axios'
 import { useItemAction } from '../actionHelperLib'
 import PostForm from '../components/PostForm'
@@ -72,12 +72,12 @@ export default function Posts() {
                   </Button>
                   <Button
                     type="primary"
-                    onClick={() => triggerAction(DEPRECATE)}
-                    loading={isActionLoading(DEPRECATE)}
+                    onClick={() => triggerAction(ARCHIVE)}
+                    loading={isActionLoading(ARCHIVE)}
                     disabled={selectedKeys.length === 0}
                     style={{ marginRight: '10px' }}
                   >
-                    Deprecate
+                    Archive
                   </Button>
                 </div>
                 <Table

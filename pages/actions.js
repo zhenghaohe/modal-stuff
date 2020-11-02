@@ -11,7 +11,7 @@ function useDeletePost(config) {
 }
 
 export const DELETE = 'delete'
-export const DEPRECATE = 'deprecate'
+export const ARCHIVE = 'archive'
 
 const usePostActions = () => ({
   [DELETE]: {
@@ -37,20 +37,20 @@ const usePostActions = () => ({
       onSettled: () => queryCache.invalidateQueries('posts'),
     }),
   },
-  [DEPRECATE]: {
+  [ARCHIVE]: {
     // this is doing the same thing as DELETE. I added it here to just demostrate that this supports multiple
     // different kinds of actions
     frictionModal: genereateModal((props) => ({
-      header: 'Deprecate posts',
-      content: `You are about to deprecate ${props.items.length} posts`,
-      confirmText: 'Deprecate',
+      header: 'Archive posts',
+      content: `Are you sure you want to archive ${props.items.length} post(s)`,
+      confirmText: 'Archive',
       cancelText: 'Cancel',
     })),
     mutation: useDeletePost({
       onSuccess: (_, items) => {
         notification.success({
-          message: `successfully Deprecate ${items.length} post(s)`,
-          description: 'You made it!',
+          message: `successfully archive ${items.length} post(s)`,
+          description: 'You will not see them anymore!',
         })
       },
       onError: (error) => {
